@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <title>game</title>
+  </head>
+  <body class="m-0 p-0">
+    <div class="fixed ml-1 mt-1 select-none">
+      <span>Score: </span>
+      <span id="currentScore">0</span>
+    </div>
+    <div
+      class="
+        fixed
+        inset-0
+        flex
+        items-center
+        text-center
+        justify-center
+        hidden
+        bg-white bg-opacity-50
+      "
+      id="modal"
+    >
+      <div class="shadow rounded-md max-w-md p-5 w-full bg-white">
+        <h1 class="text-5xl leading-none" id="finalScore">0</h1>
+        <p class="text-sm mb-3">points</p>
+        <div>
+          <button
+            class="bg-blue-400 p-3 w-full rounded-full text-white text-sm"
+            id="startBtn"
+          >
+            Start Game
+          </button>
+        </div>
+      </div>
+    </div>
+    <canvas class="w-full h-full"></canvas>
+    <script src="app.js"></script>
+  </body>
+</html>
