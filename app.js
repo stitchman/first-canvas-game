@@ -68,7 +68,7 @@ class Enemy {
         Math.random() < 0.5 ? 0 - this.radius : canvas.height + this.radius;
     }
 
-    const colors = ["#c92a2a", "#e03131", "#f03e3e", "#fa5252", "#ff6b6b"];
+    const colors = ["#4285F4", "#DB4437", "#F4B400", "#0F9D58"];
     const colorIndex = Math.floor(Math.random() * colors.length);
     this.color = colors[colorIndex];
 
