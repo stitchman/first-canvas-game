@@ -136,13 +136,22 @@ const PLAYER_RADIUS = 15;
 const PROJECTILE_RADIUS = 3;
 const PROJECTILE_VELOCITY = 7;
 const ENEMY_VELOCITY = 2;
-const player = new Player(PLAYER_RADIUS, "#fcc419");
 
+let player = new Player(PLAYER_RADIUS, "#fcc419");
 let projectiles = [];
 let enemies = [];
 let particles = [];
 
-window.addEventListener("click", (e) => {
+function init() {
+  player = new Player(PLAYER_RADIUS, "#fcc419");
+  projectiles = [];
+  enemies = [];
+  particles = [];
+  score = 0;
+  currentScore.innerHTML = score;
+}
+
+canvas.addEventListener("click", (e) => {
   projectiles.push(
     new Projectile(
       PROJECTILE_RADIUS,
@@ -154,11 +163,9 @@ window.addEventListener("click", (e) => {
   );
 });
 
-function spawnEnemy() {
-  setInterval(() => {
-    enemies.push(new Enemy(PROJECTILE_RADIUS, ENEMY_VELOCITY));
-  }, 1000);
-}
+let spawnEnemy = setInterval(() => {
+  enemies.push(new Enemy(PROJECTILE_RADIUS, ENEMY_VELOCITY));
+}, 1000);
 
 let score = 0;
 function animate() {
@@ -242,6 +249,7 @@ function animate() {
       setTimeout(() => {
         enemies.splice(index, 1);
         cancelAnimationFrame(animateId);
+        clearInterval(spawnEnemy);
         finalScore.innerHTML = score;
         modal.classList.remove("hidden");
       });
@@ -252,15 +260,11 @@ function animate() {
 //start button eventhandler
 startBtn.addEventListener("click", () => {
   modal.classList.add("hidden");
-  score = 0;
-  currentScore.innerHTML = score;
-  projectiles = [];
-  enemies = [];
-  particles = [];
-
+  init();
   animate();
-  spawnEnemy();
+  spawnEnemy = setInterval(() => {
+    enemies.push(new Enemy(PROJECTILE_RADIUS, ENEMY_VELOCITY));
+  }, 1000);
 });
 
 animate();
-spawnEnemy();
